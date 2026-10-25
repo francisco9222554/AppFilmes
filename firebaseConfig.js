@@ -10,6 +10,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
+  apiKey: "AIzaSyD46DLy3gSvz8v7yEoaAcXgXZT_dS2pgDs",
   authDomain: "appfilmes-d140b.firebaseapp.com",
   databaseURL: "https://appfilmes-d140b-default-rtdb.firebaseio.com",
   projectId: "appfilmes-d140b",
