@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Alert KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useRouter } from "expo-router";
 import { addDoc, collection } from "firebase/firestore";
+import { useState } from "react";
+import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput } from "react-native";
 import { db } from "../../firebaseConfig";
 
 export default function Cadastro() {
@@ -15,13 +15,23 @@ export default function Cadastro() {
   const router = useRouter();
 
   async function salvar() {
-    if (!nome.trim() || !ano.trim() || !idadeIndicativa.trim() || !genero.trim() || !diretor.trim()) {
+    if (
+      !nome.trim() ||
+      !ano.trim() ||
+      !idadeIndicativa.trim() ||
+      !genero.trim() ||
+      !diretor.trim()
+    ) {
       Alert.alert("Atenção", "Preencha todos os campos.");
       return;
     }
 
     const anoNumero = parseInt(ano, 10);
-    if (isNaN(anoNumero) || anoNumero < 1888 || anoNumero > new Date().getFullYear() + 5) {
+    if (
+      isNaN(anoNumero) ||
+      anoNumero < 1888 ||
+      anoNumero > new Date().getFullYear() + 5
+    ) {
       Alert.alert("Atenção", "Informe um ano de lançamento válido.");
       return;
     }
@@ -44,8 +54,8 @@ export default function Cadastro() {
         },
       ]);
     } catch (e) {
-      Alert.alert("Erro", "Não foi possível cadastrar o filme.");
       console.error(e);
+      Alert.alert("Erro", "Não foi possível cadastrar o filme.");
     } finally {
       setSalvando(false);
     }

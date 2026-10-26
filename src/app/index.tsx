@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react";
-import { Alert, FlatList, Pressable, StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
-import { collection, deleteDoc, doc, getDocs, orderBy, query, } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, orderBy, query } from "firebase/firestore";
+import { useCallback, useState } from "react";
+import { ActivityIndicator, Alert, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { db } from "../../firebaseConfig";
 
 type Filme = {
@@ -31,8 +31,8 @@ export default function Index() {
 
       setFilmes(lista);
     } catch (e) {
-      Alert.alert("Erro", "Não foi possível carregar os filmes.");
       console.error(e);
+      Alert.alert("Erro", "Não foi possível carregar os filmes.");
     } finally {
       setCarregando(false);
     }
@@ -65,8 +65,8 @@ export default function Index() {
       Alert.alert("Sucesso", "Filme excluído com sucesso!");
       carregarFilmes();
     } catch (e) {
-      Alert.alert("Erro", "Não foi possível excluir o filme.");
       console.error(e);
+      Alert.alert("Erro", "Não foi possível excluir o filme.");
     }
   }
 
@@ -102,7 +102,11 @@ export default function Index() {
       </Pressable>
 
       {carregando ? (
-        <ActivityIndicator size="large" color="#1e88e5" style={{ marginTop: 40 }} />
+        <ActivityIndicator
+          size="large"
+          color="#1e88e5"
+          style={{ marginTop: 40 }}
+        />
       ) : filmes.length === 0 ? (
         <Text style={styles.vazio}>Nenhum filme cadastrado.</Text>
       ) : (
