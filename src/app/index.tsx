@@ -3,15 +3,7 @@ import { collection, deleteDoc, doc, getDocs, orderBy, query } from "firebase/fi
 import { useCallback, useState } from "react";
 import { ActivityIndicator, Alert, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { db } from "../../firebaseConfig";
-
-type Filme = {
-  id: string;
-  nome: string;
-  ano: number;
-  idadeIndicativa: string;
-  genero: string;
-  diretor: string;
-};
+import { Filme } from "../types/Filme";
 
 export default function Index() {
   const [filmes, setFilmes] = useState<Filme[]>([]);
